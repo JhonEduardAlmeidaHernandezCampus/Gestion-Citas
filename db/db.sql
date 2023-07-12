@@ -31,7 +31,8 @@ CREATE TABLE genero(
     gen_abreviatura VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE acudiente(
+CREATE TABLE acudiente(MY_CONFIG={"hostname":"127.10.10.10", "port":5100}
+MY_CONNECT={"host":"localhost","user":"campus","password":"campus2023","database":"db_mer_citas_medicas", "port":3306}
     acu_codigo INT NOT NULL PRIMARY KEY,
     acu_nombreCompleto VARCHAR(100) NOT NULL,
     acu_telefono VARCHAR(100) NOT NULL,
