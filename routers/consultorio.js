@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postConsultorio from '../middleware/middlewareConsultorio.js'
 
 let storageConsultorio = Router();
 dotenv.config();
@@ -20,6 +21,32 @@ storageConsultorio.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Codigo": 6,
+        "Nombre": "Consultorio"
+    }
+*/
+
+storageConsultorio.post("/", postConsultorio, (req, res) => {
+
+    const {cons_codigo, cons_nombre} = req.body
+
+    con.query(
+        `INSERT INTO consultorio (cons_codigo, cons_nombre) VALUES (?, ?)`,
+        [cons_codigo, cons_nombre],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar el consultorio")
+            } else {
+                res.send("Consultorio agregado con exito")
+            }
+        }
+    )
 })
 
 export default storageConsultorio;

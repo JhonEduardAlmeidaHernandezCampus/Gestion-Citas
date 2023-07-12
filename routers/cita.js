@@ -25,10 +25,10 @@ storageCita.get("/", (req, res)=>{
 
 /*
     {
-        "Cedula": 112,
-        "Nombre": "Carmen Hernandez",
-        "Telefono": "+57 12321312",
-        "Direccion": "789 Calle 9"
+        "Fecha": "2023-02-18",
+        "Estado": 5,
+        "Medico": 13579,
+        "ID_Usuario": 13579
     }
 */
 
