@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postEstadoCita from '../middleware/middlewareEstadoCita.js';
 
 let storageEstadoCita = Router();
 dotenv.config();
@@ -20,6 +21,31 @@ storageEstadoCita.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Estado": "Programada"
+    }
+*/
+
+storageEstadoCita.post("/", postEstadoCita, (req, res) => {
+
+    const {estcita_nombre} = req.body
+
+    con.query(
+        `INSERT INTO estado_cita (estcita_nombre) VALUES (?)`,
+        [estcita_nombre],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar el estado")
+            } else {
+                res.send("Estado agregado con exito")
+            }
+        }
+    )
 })
 
 export default storageEstadoCita;
