@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postEspecialidad from '../middleware/middlewareEspecialidad.js';
 
 let storageEspecialidad = Router();
 dotenv.config();
@@ -20,6 +21,31 @@ storageEspecialidad.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Especialidad": "Medico Veterinario"
+    }
+*/
+
+storageEspecialidad.post("/", postEspecialidad, (req, res) => {
+
+    const {esp_nombre} = req.body
+
+    con.query(
+        `INSERT INTO especialidad (esp_nombre) VALUES (?)`,
+        [esp_nombre],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar la especialidad")
+            } else {
+                res.send("Especialidad agregada con exito")
+            }
+        }
+    )
 })
 
 export default storageEspecialidad;
