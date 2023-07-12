@@ -13,7 +13,7 @@ storageEstadoCita.use((req, res, next) => {
     next();
 })
 
-/* http://127.11.11.11:5010/usuario/ */
+/* http://127.11.11.11:5010/estado_cita/ */
 storageEstadoCita.get("/", (req, res)=>{
     con.query(
     /*sql*/`SELECT * FROM estado_cita`,
