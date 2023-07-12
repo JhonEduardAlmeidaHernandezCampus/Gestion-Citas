@@ -25,7 +25,8 @@ storageGenero.get("/", (req, res)=>{
 
 /*
     {
-        "Estado": "Programada"
+        "Genero": "Anormal",
+        "Abreviatura": "A"
     }
 */
 
