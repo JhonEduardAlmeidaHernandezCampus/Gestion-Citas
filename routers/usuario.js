@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postUsuario from '../middleware/middlewareUsuario.js';
 
 let storageUsuario = Router();
 dotenv.config();
@@ -20,6 +21,32 @@ storageUsuario.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Tipo_Documento": "Cedula de Extrangeria",
+        "Abreviatura": "CE"
+    }
+*/
+
+storageUsuario.post("/", postUsuario, (req, res) => {
+
+    const {usu_id, usu_nombre, usu_segdo_nombre, usu_primer_apellido_usuar, usu_segdo_apellido_usuar, usu_edad, usu_telefono, usu_direccion, usu_email, usu_tipodoc, usu_genero, usu_acudiente} = req.body
+
+    con.query(
+        `INSERT INTO usuario (usu_id, usu_nombre, usu_segdo_nombre, usu_primer_apellido_usuar, usu_segdo_apellido_usuar, usu_edad, usu_telefono, usu_direccion, usu_email, usu_tipodoc, usu_genero, usu_acudiente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [usu_id, usu_nombre, usu_segdo_nombre, usu_primer_apellido_usuar, usu_segdo_apellido_usuar, usu_edad, usu_telefono, usu_direccion, usu_email, usu_tipodoc, usu_genero, usu_acudiente],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar el usuario")
+            } else {
+                res.send("Usuario agregado con exito")
+            }
+        }
+    )
 })
 
 export default storageUsuario;

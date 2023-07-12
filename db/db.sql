@@ -101,12 +101,12 @@ INSERT INTO acudiente (acu_codigo, acu_nombreCompleto, acu_telefono, acu_direcci
 (54321, "Eduardo Sabater", "+57 12321323", "321 High Street Town XYZ"),
 (13579, "Ariel Lledo", "+57 312314123", "Appartement 789");
 
-INSERT INTO usuario (usu_id, usu_nombre, usu_segdo_nombre, usu_primer_apellido_usuar, usu_segdo_apellido_usuar, usu_telefono, usu_direccion, usu_email, usu_tipodoc, usu_genero, usu_acudiente) VALUES 
-(12345, "Sofia", "Andrea", "Johnson", "Sanchez", "+57 123213", "Calle 45", "Sofia@gmail.com", 1, 1, 12345),
-(54321, "Liam", "Camila", "Rodriguez", "Perez", "+57 51512213", "Calle 21", "Liam@gmail.com", 2, 2, 67890),
-(67890, "Ethan", "Camilo", "Martinez", "Hernandez", "+57 31123213", "Calle 32", "Ethan@gmail.com", 3, 3, 09876),
-(09876, "Ava", "Alejandra", "Thompson", "Herrera", "+57 31451512", "Calle 64", "Ava@gmail.com", 4, 4, 54321),
-(13579, "Mia", "Fernanda", "Smith", "Rueda", "+57 214315125", "Calle 97", "Mia@gmail.com", 1, 5, 13579);
+INSERT INTO usuario (usu_id, usu_nombre, usu_segdo_nombre, usu_primer_apellido_usuar, usu_segdo_apellido_usuar, usu_edad, usu_telefono, usu_direccion, usu_email, usu_tipodoc, usu_genero, usu_acudiente) VALUES 
+(12345, "Sofia", "Andrea", "Johnson", "Sanchez", 11, "+57 123213", "Calle 45", "Sofia@gmail.com", 1, 1, 12345),
+(54321, "Liam", "Camila", "Rodriguez", "Perez", 18, "+57 51512213", "Calle 21", "Liam@gmail.com", 2, 2, 67890),
+(67890, "Ethan", "Camilo", "Martinez", "Hernandez", 19, "+57 31123213", "Calle 32", "Ethan@gmail.com", 3, 3, 09876),
+(09876, "Ava", "Alejandra", "Thompson", "Herrera", 21, "+57 31451512", "Calle 64", "Ava@gmail.com", 4, 4, 54321),
+(13579, "Mia", "Fernanda", "Smith", "Rueda", 25, "+57 214315125", "Calle 97", "Mia@gmail.com", 1, 5, 13579);
 
 INSERT INTO estado_cita (estcita_nombre) VALUES 
 ("Activo"),
