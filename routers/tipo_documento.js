@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postTipoDocumento from '../middleware/middlewareTipoDocumento.js';
 
 let storageTipoDocumento = Router();
 dotenv.config();
@@ -20,6 +21,32 @@ storageTipoDocumento.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Tipo_Documento": "Cedula de Extrangeria",
+        "Abreviatura": "CE"
+    }
+*/
+
+storageTipoDocumento.post("/", postTipoDocumento, (req, res) => {
+
+    const {tipdoc_nombre, tipdoc_abreviatura} = req.body
+
+    con.query(
+        `INSERT INTO tipo_documento (tipdoc_nombre, tipdoc_abreviatura) VALUES (?, ?)`,
+        [tipdoc_nombre, tipdoc_abreviatura],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar el tipo de documento")
+            } else {
+                res.send("Tipo de documento agregado con exito")
+            }
+        }
+    )
 })
 
 export default storageTipoDocumento;
