@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postAcudiente from '../middleware/middlewareAcudiente.js';
 
 let storageAcudiente = Router();
 dotenv.config();
@@ -20,6 +21,34 @@ storageAcudiente.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Cedula": 112,
+        "Nombre": "Carmen Hernandez",
+        "Telefono": "+57 12321312",
+        "Direccion": "789 Calle 9"
+    }
+*/
+
+storageAcudiente.post("/", postAcudiente, (req, res) => {
+
+    const {acu_codigo, acu_nombreCompleto, acu_telefono, acu_direccion} = req.body
+
+    con.query(
+        `INSERT INTO acudiente (acu_codigo, acu_nombreCompleto, acu_telefono, acu_direccion) VALUES (?, ?, ?, ?)`,
+        [acu_codigo, acu_nombreCompleto, acu_telefono, acu_direccion],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar al acudiente")
+            } else {
+                res.send("Acudiente agregado con exito")
+            }
+        }
+    )
 })
 
 export default storageAcudiente;
