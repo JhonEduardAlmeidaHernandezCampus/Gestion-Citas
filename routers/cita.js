@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
+import postCita from '../middleware/middlewareCita.js';
 
 let storageCita = Router();
 dotenv.config();
@@ -20,6 +21,34 @@ storageCita.get("/", (req, res)=>{
     (err, data, fil) => {
         res.send(JSON.stringify(data))
     }) 
+})
+
+/*
+    {
+        "Cedula": 112,
+        "Nombre": "Carmen Hernandez",
+        "Telefono": "+57 12321312",
+        "Direccion": "789 Calle 9"
+    }
+*/
+
+storageCita.post("/", postCita, (req, res) => {
+
+    const {cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario} = req.body
+
+    con.query(
+        `INSERT INTO cita (cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario) VALUES (?, ?, ?, ?)`,
+        [cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario],
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al agregar la cita")
+            } else {
+                res.send("Cita agregada con exito")
+            }
+        }
+    )
 })
 
 export default storageCita;
