@@ -59,4 +59,20 @@ storageUsuario.post("/", postUsuario, (req, res) => {
     )
 })
 
+storageUsuario.put("/:usu_id", postUsuario, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE usuario SET ? WHERE usu_id = ?`,
+        [req.body, req.params.usu_id],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el usuario")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageUsuario;
