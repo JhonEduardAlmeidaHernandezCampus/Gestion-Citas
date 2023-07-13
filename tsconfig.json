@@ -6,6 +6,6 @@
         "outDir": "./controller",
         "esModuleInterop": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true 
     }
 }
