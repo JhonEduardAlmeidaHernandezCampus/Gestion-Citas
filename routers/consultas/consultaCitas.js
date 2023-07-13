@@ -52,10 +52,10 @@ storageConsultaCitas.get("/genero/:usu_genero/estado/:estcita_id", (req, res)=>{
     }) 
 })
 
-/* http://127.10.10.10:5010/consultarCitas/fecha/07/estado/3 */
-storageConsultaCitas.get("/fecha/:cit_fecha/estado/:cit_estadoCita", (req, res)=>{
+/* http://127.10.10.10:5010/consultarCitas/fecha/07 */
+storageConsultaCitas.get("/fecha/:cit_fecha", (req, res)=>{
     con.query(
-    /*sql*/`SELECT usuario.usu_id, usuario.usu_nombre, cita.cit_fecha, medico.med_nombreCompleto, estado_cita.estcita_nombre FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id WHERE MONTH(cit_fecha) = ? AND cit_estadoCita = ?`,
+    /*sql*/`SELECT usuario.usu_id, usuario.usu_nombre, cita.cit_fecha, medico.med_nombreCompleto, estado_cita.estcita_nombre FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id WHERE MONTH(cit_fecha) = ? AND cit_estadoCita = 3`,
     [req.params.cit_fecha, req.params.cit_estadoCita],
     (err, data, fil) => {
         res.send(JSON.stringify(data))
