@@ -42,4 +42,14 @@ storageConsultaCitas.get("/citaDia/:cit_fecha", (req, res)=>{
     }) 
 })
 
+/* http://127.10.10.10:5010/consultarCitas/genero/5/estado/5 */
+storageConsultaCitas.get("/genero/:usu_genero/estado/:estcita_id", (req, res)=>{
+    con.query(
+    /*sql*/`SELECT usu_id, usu_nombre, usu_primer_apellido_usuar, usu_genero, cita.cit_fecha, estcita_id, estado_cita.estcita_nombre FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id WHERE usu_genero = ? AND estcita_id = ?`,
+    [req.params.usu_genero, req.params.estcita_id],
+    (err, data, fil) => {
+        res.send(JSON.stringify(data))
+    }) 
+})
+
 export default storageConsultaCitas;
