@@ -141,22 +141,3 @@ INSERT INTO cita (cit_fecha, cit_estadoCita, cit_medico, cit_datosUsuario) VALUE
 ("2023-02-15", 3, 09876, 67890),
 ("2023-02-16", 4, 54321, 09876),
 ("2023-02-17", 5, 13579, 13579);
-
-
-
-/* CONSULTAS */
-SELECT * FROM usuario ORDER BY usu_nombre DESC;
-SELECT * FROM cita ORDER BY cit_fecha DESC;
-SELECT * FROM medico INNER JOIN especialidad ON medico.med_especialidad = especialidad.esp_id WHERE especialidad.esp_id = 1;
-SELECT * FROM cita INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id INNER JOIN usuario ON cita.cit_datosUsuario = usuario.usu_id WHERE cita.cit_estadoCita = 1;
-SELECT usu_id, usu_nombre, usu_primer_apellido_usuar, cit_fecha, med_nroMatriculaProsional, med_nombreCompleto FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional WHERE med_nroMatriculaProsional = 13579;
-SELECT * FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo WHERE consultorio.cons_codigo = 4;
-SELECT * FROM cita WHERE cit_fecha = "2023-02-15";
-SELECT * FROM medico INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo;
-SELECT medico.med_nroMatriculaProsional, medico.med_nombreCompleto, medico.med_consultorio, medico.med_especialidad, COUNT(cita.cit_codigo) AS Total FROM medico INNER JOIN cita ON medico.med_nroMatriculaProsional = cita.cit_medico GROUP BY medico.med_nroMatriculaProsional, medico.med_nombreCompleto, medico.med_consultorio, medico.med_especialidad ORDER BY Total DESC;
-SELECT * FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo;
-SELECT * FROM usuario INNER JOIN genero ON usuario.usu_genero = genero.gen_id INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id WHERE usuario.usu_genero = 1 AND estado_cita.estcita_id = 1;
-
-
-
-SELECT usuario.usu_nombre, usuario.usu_segdo_nombre, usuario.usu_primer_apellido_usuar, usuario.usu_segdo_apellido_usuar, cita.cit_fecha, medico.med_nombreCompleto FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional WHERE cita.cit_estadoCita = 3;
