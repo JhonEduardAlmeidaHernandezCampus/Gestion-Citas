@@ -49,4 +49,20 @@ storageGenero.post("/", postGenero, (req, res) => {
     )
 })
 
+storageGenero.put("/:gen_id", postGenero, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE genero SET ? WHERE gen_id = ?`,
+        [req.body, req.params.gen_id],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el genero")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageGenero;
