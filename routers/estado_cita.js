@@ -48,4 +48,20 @@ storageEstadoCita.post("/", postEstadoCita, (req, res) => {
     )
 })
 
+storageEstadoCita.put("/:estcita_id", postEstadoCita, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE estado_cita SET ? WHERE estcita_id = ?`,
+        [req.body, req.params.estcita_id],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el estado de la cita")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageEstadoCita;
