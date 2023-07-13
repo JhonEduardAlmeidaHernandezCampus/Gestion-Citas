@@ -149,7 +149,7 @@ SELECT * FROM usuario ORDER BY usu_nombre DESC;
 SELECT * FROM cita ORDER BY cit_fecha DESC;
 SELECT * FROM medico INNER JOIN especialidad ON medico.med_especialidad = especialidad.esp_id WHERE especialidad.esp_id = 1;
 SELECT * FROM cita INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id INNER JOIN usuario ON cita.cit_datosUsuario = usuario.usu_id WHERE cita.cit_estadoCita = 1;
-SELECT * FROM cita INNER JOIN estado_cita ON cita.cit_estadoCita = estado_cita.estcita_id INNER JOIN usuario ON cita.cit_datosUsuario = usuario.usu_id WHERE cita.cit_medico = 12345;
+SELECT usu_id, usu_nombre, usu_primer_apellido_usuar, cit_fecha, med_nroMatriculaProsional, med_nombreCompleto FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional WHERE med_nroMatriculaProsional = 13579;
 SELECT * FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo WHERE consultorio.cons_codigo = 4;
 SELECT * FROM cita WHERE cit_fecha = "2023-02-15";
 SELECT * FROM medico INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo;

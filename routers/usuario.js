@@ -25,8 +25,18 @@ storageUsuario.get("/", (req, res)=>{
 
 /*
     {
-        "Tipo_Documento": "Cedula de Extrangeria",
-        "Abreviatura": "CE"
+        "Documento": 123123,
+        "Primer_Nombre": "Sofia",
+        "Segundo_Nombre": "Andrea",
+        "Primer_Apellido": "Johnson",
+        "Segundo_Apellido": "Sanchez",
+        "Edad": 18,
+        "Telefono": "+57 123213",
+        "Direccion": "Calle 45",
+        "Email": "Sofia@gmail.com",
+        "Tipo_Documento": 1,
+        "Genero": 1,
+        "Acudiente": 12345
     }
 */
 
