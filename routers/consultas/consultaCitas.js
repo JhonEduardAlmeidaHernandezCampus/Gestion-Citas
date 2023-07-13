@@ -22,4 +22,14 @@ storageConsultaCitas.get("/", (req, res)=>{
     }) 
 })
 
+/* http://127.11.11.11:5010/consultarCitas/ */
+storageConsultaCitas.get("/proximaCita/:usu_id", (req, res)=>{
+    con.query(
+    /*sql*/`SELECT usu_id, usuario.usu_nombre, usuario.usu_primer_apellido_usuar, usuario.usu_telefono, cita.cit_fecha FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario WHERE usu_id = ? ORDER BY cita.cit_fecha DESC`,
+    [req.params.usu_id],
+    (err, data, fil) => {
+        res.send(JSON.stringify(data))
+    }) 
+})
+
 export default storageConsultaCitas;
