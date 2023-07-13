@@ -23,6 +23,15 @@ storageConsultaMedicos.get("/especialidad/:esp_id", (req, res)=>{
     }) 
 })
 
+/* http://127.10.10.10:5010/consultarMedicos/consultoriosMedicos/ */
+storageConsultaMedicos.get("/consultoriosMedicos/", (req, res)=>{
+    con.query(
+    /sql/`SELECT medico.med_nroMatriculaProsional, medico.med_nombreCompleto, consultorio.cons_nombre FROM medico INNER JOIN consultorio ON medico.med_consultorio = consultorio.cons_codigo`,
+    (err, data, fil) => {
+        res.send(JSON.stringify(data))
+    }) 
+})
+
 /* http://127.10.10.10:5010/consultarMedicos/Medico/13579/Fecha/2023-02-18 */
 storageConsultaMedicos.get("/Medico/:med_nroMatriculaProsional/Fecha/:cit_fecha", (req, res)=>{
     con.query(
