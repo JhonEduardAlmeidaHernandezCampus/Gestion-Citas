@@ -14,6 +14,7 @@ import storageConsultorio from './routers/consultorio.js';
 import storageConsultaUsu from './routers/consultas/consultaUsuarios.js';
 import storageConsultaCitas from './routers/consultas/consultaCitas.js';
 import storageConsultaMedicos from './routers/consultas/consultaMedicos.js';
+import storageConsultaConsultorias from './routers/consultas/consultaConsultorias.js';
 
 dotenv.config();
 let appExpress = express();
@@ -34,6 +35,8 @@ appExpress.use("/consultorio", storageConsultorio);
 appExpress.use("/consultarUsuario", storageConsultaUsu);
 appExpress.use("/consultarCitas", storageConsultaCitas);
 appExpress.use("/consultarMedicos", storageConsultaMedicos);
+appExpress.use("/consultarConsultorias", storageConsultaConsultorias);
+
 
 
 let config = JSON.parse(process.env.MY_CONFIG)
