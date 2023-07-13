@@ -48,4 +48,20 @@ storageEspecialidad.post("/", postEspecialidad, (req, res) => {
     )
 })
 
+storageEspecialidad.put("/:esp_id", postEspecialidad, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE especialidad SET ? WHERE esp_id = ?`,
+        [req.body, req.params.esp_id],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar la especialidad")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageEspecialidad;
