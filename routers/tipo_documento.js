@@ -49,4 +49,20 @@ storageTipoDocumento.post("/", postTipoDocumento, (req, res) => {
     )
 })
 
+storageTipoDocumento.put("/:tipdoc_id", postTipoDocumento, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE tipo_documento SET ? WHERE tipdoc_id = ?`,
+        [req.body, req.params.tipdoc_id],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el tipo de documento")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageTipoDocumento;
