@@ -49,4 +49,20 @@ storageConsultorio.post("/", postConsultorio, (req, res) => {
     )
 })
 
+storageConsultorio.put("/:cons_codigo", postConsultorio, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE consultorio SET ? WHERE cons_codigo = ?`,
+        [req.body, req.params.cons_codigo],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el consultorio")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageConsultorio;
