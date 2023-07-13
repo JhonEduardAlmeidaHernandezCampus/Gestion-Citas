@@ -51,4 +51,20 @@ storageAcudiente.post("/", postAcudiente, (req, res) => {
     )
 })
 
+storageAcudiente.put("/:acu_codigo", postAcudiente, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE acudiente SET ? WHERE acu_codigo = ? `,
+        [req.body, req.params.acu_codigo],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el acudiente")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageAcudiente;
