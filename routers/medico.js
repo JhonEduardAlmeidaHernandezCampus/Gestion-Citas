@@ -51,4 +51,20 @@ storageMedico.post("/", postMedico, (req, res) => {
     )
 })
 
+storageMedico.put("/:med_nroMatriculaProsional", postMedico, (req,res)=>{
+
+    con.query(
+        /*sql*/`UPDATE medico SET ? WHERE med_nroMatriculaProsional = ?`,
+        [req.body, req.params.med_nroMatriculaProsional],
+
+        (err, data, fil)=>{
+            if (err) {
+                res.status(500).send("Error al modificar el medico")
+            }else{
+                res.send("Modificado con exito")
+            }
+        }
+    )
+})
+
 export default storageMedico;
