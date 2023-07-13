@@ -22,4 +22,14 @@ storageConsultaUsu.get("/", (req, res)=>{
     }) 
 })
 
+/* http://127.10.10.10:5010/consultarUsuario/medicoEspecifico/13579 */
+storageConsultaUsu.get("/medicoEspecifico/:med_nroMatriculaProsional", (req, res)=>{
+    con.query(
+    /*sql*/`SELECT usu_id, usu_nombre, usu_primer_apellido_usuar, cit_fecha, med_nroMatriculaProsional, med_nombreCompleto FROM usuario INNER JOIN cita ON usuario.usu_id = cita.cit_datosUsuario INNER JOIN medico ON cita.cit_medico = medico.med_nroMatriculaProsional WHERE med_nroMatriculaProsional = ?`,
+    [req.params.med_nroMatriculaProsional],
+    (err, data, fil) => {
+        res.send(JSON.stringify(data))
+    }) 
+})
+
 export default storageConsultaUsu;
